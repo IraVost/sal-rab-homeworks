@@ -10,9 +10,9 @@ function calcShipping(sum, min, shipping) {
     if (productsSum == 0 || productsSum >= freeShippingMinSum) {
         shippingSum = 0;
     } 
-    else if ((productsSum > 0) & (productsSum < freeShippingMinSum)) {
+    else {
         shippingSum = shippingPrice;
-        }
+    }
     // создайте переменную shippingSum
 
     // если productsSum равно 0,
@@ -35,14 +35,14 @@ function calcDiscount(sum, min, discount) {
     let discountPart = discount; // величина скидки в процентах
 
 // Задание №2.2. Рассчитать скидку
-let discountSum;
+    let discountSum;
 // создайте переменную discountSum
-if(productsSum >= discountMinSum) {
-    discountSum = productsSum / 100 * discountPart; 
-}
-else {
-    discountSum = 0;
-}
+    if(productsSum >= discountMinSum) {
+        discountSum = productsSum / 100 * discountPart; 
+    }
+    else {
+        discountSum = 0;
+    }
 // если productsSum больше или равно discountMinSum,
 // то присвойте discountSum значение discountPart процентов от productsSum,
 // иначе присвойте discountSum значение 0
@@ -57,21 +57,21 @@ function calcInvoice({sum, discountMinSum, discountPart, shippingFreeMinSum, shi
     let discountSum = calcDiscount(sum, discountMinSum, discountPart);
 
 // Задача №2.3. Рассчитать скидки и доставку в корзине
-let totalSum = productsSum;
+    let totalSum = productsSum;
 // создайте переменную totalSum
 totalSum = totalSum - discountSum;
 // присвойте totalSum значение productsSum
 // уменьшите totalSum на discountSum
 
-let shippingSum = calcShipping(totalSum, shippingFreeMinSum, shippingPrice); // не изменяйте эту строку!!!
+    let shippingSum = calcShipping(totalSum, shippingFreeMinSum, shippingPrice); // не изменяйте эту строку!!!
 
 // прибавьте к totalSum значение shippingSum
-totalSum = totalSum + shippingSum;
+    totalSum = totalSum + shippingSum;
 // создайте переменную freeShipping
 // запишите без использования if или любых других условий:
 // если shippingSum равно нулю, то freeShipping должна быть равна true, иначе freeShipping должна быть равна false
-let freeShipping;
-freeShipping = !shippingSum;
+    let freeShipping;
+    freeShipping = !shippingSum;
 // Конец решения задачи №2.3.
 
     return {discount: discountSum, freeShipping, shipping: shippingSum, total: totalSum};
